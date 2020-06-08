@@ -22,6 +22,11 @@ jobs:
 
       - name: Build, test, report
         run: mvn -B clean package deploy --file pom.xml
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           DISTRIBUTION_ID: github
+           DISTRIBUTION_NAME: Notes Example Project
+           DISTRIBUTION_URL: https://maven.pkg.github.com/${{ github.repository }}
         
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
