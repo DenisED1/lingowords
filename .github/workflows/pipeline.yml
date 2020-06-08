@@ -25,7 +25,7 @@ jobs:
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            DISTRIBUTION_ID: github
-           DISTRIBUTION_NAME: Lingowords
+           DISTRIBUTION_NAME: Notes Example Project
            DISTRIBUTION_URL: https://maven.pkg.github.com/${{ github.repository }}
         
       - name: Upload coverage to Codecov

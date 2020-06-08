@@ -27,9 +27,9 @@
   
 	<distributionManagement>
  		<repository>
- 			<id>${env.DISTRIBUTION_ID}</id>
- 			<name>${env.DISTRIBUTION_NAME}</name>
- 			<url>>${env.DISTRIBUTION_URL}</url>
+ 			<id>github</id>
+ 			<name>Notes Spring Boot Example</name>
+ 			<url>https://maven.pkg.github.com/DenisED1/lingowords</url>
  		</repository>
 	</distributionManagement>
 	
