@@ -23,10 +23,11 @@ jobs:
       - name: Build, test, report
         run: mvn -B clean package deploy --file pom.xml
         
-      - uses: codecov/codecov-action@v1
-         with:
-            token: ${{ secrets.CODECOV_TOKEN }}
-            file: ./coverage.xml
-            flags: unittests
-            name: codecov-umbrella
-            fail_ci_if_error: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./target/site/jacoco/jacoco.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
