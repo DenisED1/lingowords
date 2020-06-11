@@ -32,7 +32,9 @@ public class WordsProcessor {
 		boolean bool = false;
 		boolean result = false;
 		for (Map.Entry<String, Set<Word>> entry : words.entrySet()) {
+			System.out.println("Start " + entry.getKey());
 			bool = WriteToDatabase(entry.getKey(), entry.getValue());
+			System.out.println("End " + entry.getKey());
 		}
 		if(bool) {
 			result = true;

@@ -15,7 +15,7 @@ import lingo.lingowords.domain.Word;
 public class CommandLine {
 	private static WordsProcessor processor = new WordsProcessor();
 	private static List<Language> languages = new ArrayList<Language>();
-	private static File wordsTxt = new File("src/main/resources/words.txt");
+	private static File wordsTxt = new File("src/main/resources/testWords.txt");
 
 	public static void main(String[] args) {
 		MainCommandLine();
