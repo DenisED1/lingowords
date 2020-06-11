@@ -14,7 +14,7 @@ public class PostgresLanguageDaoImpl extends PostgresBaseDao implements Language
 	public boolean createLanguage(Language language) {
 		boolean result = false;
 		try (Connection con = super.getConnection()) {
-			String query = "insert into Languages (language) values(?)";
+			String query = "insert into Language (language) values(?)";
 			PreparedStatement pstmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, language.getLanguage());
 			pstmt.execute();
@@ -33,7 +33,7 @@ public class PostgresLanguageDaoImpl extends PostgresBaseDao implements Language
 		List<Language> results = new ArrayList<Language>();
 
 		try (Connection con = super.getConnection()) {
-			String query = "SELECT * FROM Languages";
+			String query = "SELECT * FROM Language";
 			PreparedStatement pstmt = con.prepareStatement(query);
 			ResultSet dbResultSet = pstmt.executeQuery();
 
@@ -53,7 +53,7 @@ public class PostgresLanguageDaoImpl extends PostgresBaseDao implements Language
 
 	public Language getLanguageID(Language language) {
 		try (Connection con = super.getConnection()) {
-			String query = "SELECT langid FROM Languages WHERE language = ?";
+			String query = "SELECT langid FROM Language WHERE language = ?";
 			PreparedStatement pstmt = con.prepareStatement(query);
 			pstmt.setString(1, language.getLanguage());
 			ResultSet dbResultSet = pstmt.executeQuery();

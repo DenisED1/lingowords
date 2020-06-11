@@ -11,7 +11,7 @@ public class WordPostgresDaoImpl extends PostgresBaseDao implements WordDao {
 	public boolean createWord(Word word) {
 		boolean result = false;
 		try (Connection con = super.getConnection()) {
-			String query = "INSERT INTO Words (word, length, langid) VALUES(?, ?, ?)";
+			String query = "INSERT INTO Word (word, length, langid) VALUES(?, ?, ?)";
 			PreparedStatement pstmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, word.getWord());
 			pstmt.setInt(2, word.getLength());
