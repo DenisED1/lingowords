@@ -4,8 +4,8 @@ import lingo.lingowords.domain.Word;
 import lingo.lingowords.domain.WordTarget;
 
 public class DbWordTarget implements WordTarget {
-	public boolean createWord(String tableName, Word word) {
+	public boolean createWord(Word word) {
 		WordDao wordDao = new WordPostgresDaoImpl();
-		return wordDao.createWord(tableName, word);
+		return wordDao.createWord(word);
 	}
 }

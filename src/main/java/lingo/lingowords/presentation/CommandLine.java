@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -75,10 +74,10 @@ public class CommandLine {
 		} else {
 				if(processor.containsName(languages, languagestr)) {
 					Language language = processor.getLanguageID(languagestr);
-					Map<String, Set<Word>> words = processor.readFile(wordsTxt, language);
+					Set<Word> words = processor.readFile(wordsTxt, language);
 					System.out.println("File readed, all selected words are now going to be written in the database"
 							+ ", this can take a moment please be patient.");
-					boolean result = processor.getSetsFromMap(words);
+					boolean result = processor.writeToDatabase(words);
 					if(result) {
 						System.out.println("Finished writing words to database!");
 					}else {

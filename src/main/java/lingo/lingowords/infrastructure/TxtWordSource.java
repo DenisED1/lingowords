@@ -5,15 +5,15 @@ import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import lingo.lingowords.domain.IWordSource;
+import lingo.lingowords.domain.WordSource;
 import lingo.lingowords.domain.Language;
 import lingo.lingowords.domain.Word;
 import java.util.*;
 
-public class TxtWordSource implements IWordSource{
+public class TxtWordSource implements WordSource{
 	private static String regex = "^[a-z]+$";
 	
-	public Map<String, Set<Word>> readTxtFile(File file, Language language) {
+	public Set<Word> readTxtFile(File file, Language language) {
 		try {
 			Scanner myReader = new Scanner(file);
 
@@ -25,23 +25,20 @@ public class TxtWordSource implements IWordSource{
 				if (matcher.matches()) {
 					switch (word.length()) {
 					case 5:
-						Word fiveLetter = new Word(word, language);
-						fiveLetterWords.add(fiveLetter);
+						Word fiveLetter = new Word(word, 5, language);
+						words.add(fiveLetter);
 						break;
 					case 6:
-						Word sixLetter = new Word(word, language);
-						sixLetterWords.add(sixLetter);
+						Word sixLetter = new Word(word, 6, language);
+						words.add(sixLetter);
 						break;
 					case 7:
-						Word sevenLetter = new Word(word, language);
-						sevenLetterWords.add(sevenLetter);
+						Word sevenLetter = new Word(word, 7, language);
+						words.add(sevenLetter);
 						break;
 					}
 				}
 			}
-			wordsMap.put("five_letter_words", fiveLetterWords);
-			wordsMap.put("six_letter_words", sixLetterWords);
-			wordsMap.put("seven_letter_words", sevenLetterWords);
 
 			myReader.close();
 		} catch (
@@ -50,6 +47,6 @@ public class TxtWordSource implements IWordSource{
 			System.out.println("File not found!");
 			e.printStackTrace();
 		}
-		return wordsMap;
+		return words;
 	}
 }
