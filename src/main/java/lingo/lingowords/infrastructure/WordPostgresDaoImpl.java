@@ -8,7 +8,7 @@ import java.sql.Statement;
 import lingo.lingowords.domain.Word;
 
 public class WordPostgresDaoImpl extends PostgresBaseDao implements WordDao {
-	public boolean CreateWord(String table, Word word) {
+	public boolean createWord(String table, Word word) {
 		boolean result = false;
 		try (Connection con = super.getConnection()) {
 			String query = String.format("insert into %s (word, langid) values(?, ?)", table);

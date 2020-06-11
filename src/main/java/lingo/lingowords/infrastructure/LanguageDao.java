@@ -5,7 +5,7 @@ import java.util.List;
 import lingo.lingowords.domain.Language;
 
 public interface LanguageDao {
-	public boolean CreateLanguage(Language language);
-	public List<Language> GetLanguages();
-	public Language GetLanguageID(Language language);
+	public boolean createLanguage(Language language);
+	public List<Language> getLanguages();
+	public Language getLanguageID(Language language);
 }

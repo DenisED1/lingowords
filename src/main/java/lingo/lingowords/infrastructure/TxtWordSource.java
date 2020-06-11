@@ -13,7 +13,7 @@ import java.util.*;
 public class TxtWordSource implements IWordSource{
 	private static String regex = "^[a-z]+$";
 	
-	public Map<String, Set<Word>> ReadTxtFile(File file, Language language) {
+	public Map<String, Set<Word>> readTxtFile(File file, Language language) {
 		try {
 			Scanner myReader = new Scanner(file);
 

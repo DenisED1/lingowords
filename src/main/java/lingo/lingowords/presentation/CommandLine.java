@@ -18,10 +18,10 @@ public class CommandLine {
 	private static File wordsTxt = new File("src/main/resources/testWords.txt");
 
 	public static void main(String[] args) {
-		MainCommandLine();
+		mainCommandLine();
 	}
 
-	public static void MainCommandLine() {
+	public static void mainCommandLine() {
 		Scanner scanner = new Scanner(System.in);
 		boolean validData = true;
 		String input = "";
@@ -40,51 +40,51 @@ public class CommandLine {
 				validData = false;
 			}
 			if (input.compareToIgnoreCase("help") == 0) {
-				Help();
+				help();
 			}
 			if (input.compareToIgnoreCase("getLang") == 0) {
-				GetAllLanguages();
+				getAllLanguages();
 			}
 			if (input.compareToIgnoreCase("addLang") == 0) {
 				validData = false;
-				AddLangCommandLine();
+				addLangCommandLine();
 			}
 			if (input.compareToIgnoreCase("run") == 0) {
 				validData = false;
-				RunCommandLine();
+				runCommandLine();
 			}
 		}
 		scanner.close();
 	}
 
-	public static void Help() {
+	public static void help() {
 		System.out.println("run : Use this command to read a file and write all words to the database.");
 		System.out.println("getLang : Use this command to show all languages.");
 		System.out.println("addLang : Use this command to add additional languages.");
 	}
 
-	public static void RunCommandLine() {
+	public static void runCommandLine() {
 		System.out.println("Please enter a registered language to start reading the file and write all words "
 				+ "that reach the Lingo requirements to the database.");
 		System.out.println("Enter quit to go back to main menu");
-		GetAllLanguages();
+		getAllLanguages();
 		Scanner scanner = new Scanner(System.in);
 		String languagestr = scanner.nextLine();
 		if (languagestr.compareToIgnoreCase("quit") == 0) {
-			MainCommandLine();
+			mainCommandLine();
 		} else {
 				if(processor.containsName(languages, languagestr)) {
-					Language language = processor.GetLanguageID(languagestr);
-					Map<String, Set<Word>> words = processor.ReadFile(wordsTxt, language);
+					Language language = processor.getLanguageID(languagestr);
+					Map<String, Set<Word>> words = processor.readFile(wordsTxt, language);
 					System.out.println("File readed, all selected words are now going to be written in the database"
 							+ ", this can take a moment please be patient.");
-					boolean result = processor.GetSetsFromMap(words);
+					boolean result = processor.getSetsFromMap(words);
 					if(result) {
 						System.out.println("Finished writing words to database!");
 					}else {
 						System.out.println("Failed to write words to database, please try again later.");
 					}
-					MainCommandLine();
+					mainCommandLine();
 				}else {
 					System.out.println("Language " + languagestr + " is not registered, please register the language first or enter a language again");
 					languagestr = scanner.nextLine();
@@ -93,28 +93,28 @@ public class CommandLine {
 		scanner.close();
 	}
 
-	public static void AddLangCommandLine() {
+	public static void addLangCommandLine() {
 		System.out.println("Please enter the name of the language you would like to add in English or "
 				+ "enter quit to go back to main menu.");
 		Scanner scanner = new Scanner(System.in);
 		String language = scanner.nextLine();
 		if (language.compareToIgnoreCase("quit") == 0) {
-			MainCommandLine();
+			mainCommandLine();
 		} else {
 			Language lang = new Language(language);
-			boolean result = AddLanguage(lang);
+			boolean result = addLanguage(lang);
 			if (result) {
 				System.out.println("Language " + language + " is succesfully added!");
-				MainCommandLine();
+				mainCommandLine();
 			} else {
-				AddLangCommandLine();
+				addLangCommandLine();
 			}
 		}
 		scanner.close();
 	}
 
-	public static void GetAllLanguages() {
-		languages = processor.GetLanguages();
+	public static void getAllLanguages() {
+		languages = processor.getLanguages();
 		String langString = "The following languages are registered: ";
 		for (Language lang : languages) {
 			langString += lang.getLanguage() + ", ";
@@ -122,8 +122,8 @@ public class CommandLine {
 		System.out.println(langString);
 	}
 
-	public static boolean AddLanguage(Language language) {
-		boolean result = processor.CreateLanguage(language);
+	public static boolean addLanguage(Language language) {
+		boolean result = processor.createLanguage(language);
 		return result;
 	}
 }

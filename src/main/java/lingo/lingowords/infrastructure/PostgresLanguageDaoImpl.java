@@ -11,7 +11,7 @@ import java.util.List;
 import lingo.lingowords.domain.Language;
 
 public class PostgresLanguageDaoImpl extends PostgresBaseDao implements LanguageDao {
-	public boolean CreateLanguage(Language language) {
+	public boolean createLanguage(Language language) {
 		boolean result = false;
 		try (Connection con = super.getConnection()) {
 			String query = "insert into Languages (language) values(?)";
@@ -29,7 +29,7 @@ public class PostgresLanguageDaoImpl extends PostgresBaseDao implements Language
 		return result;
 	}
 
-	public List<Language> GetLanguages() {
+	public List<Language> getLanguages() {
 		List<Language> results = new ArrayList<Language>();
 
 		try (Connection con = super.getConnection()) {
@@ -51,7 +51,7 @@ public class PostgresLanguageDaoImpl extends PostgresBaseDao implements Language
 		return results;
 	}
 
-	public Language GetLanguageID(Language language) {
+	public Language getLanguageID(Language language) {
 		try (Connection con = super.getConnection()) {
 			String query = "SELECT langid FROM Languages WHERE language = ?";
 			PreparedStatement pstmt = con.prepareStatement(query);

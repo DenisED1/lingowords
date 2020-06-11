@@ -12,5 +12,5 @@ public interface IWordSource {
 	Set<Word> sevenLetterWords = new HashSet<Word>();
 	Map<String, Set<Word>> wordsMap = new HashMap<String, Set<Word>>();
 	
-	Map<String, Set<Word>> ReadTxtFile(File file, Language language);
+	Map<String, Set<Word>> readTxtFile(File file, Language language);
 }

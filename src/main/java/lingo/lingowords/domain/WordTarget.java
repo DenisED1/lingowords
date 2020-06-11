@@ -1,5 +1,5 @@
 package lingo.lingowords.domain;
 
 public interface WordTarget {
-	boolean CreateWord(String tableName, Word word);
+	boolean createWord(String tableName, Word word);
 }

@@ -8,15 +8,15 @@ import lingo.lingowords.domain.LanguageTarget;
 public class DbLanguageTarget implements LanguageTarget{
 	private LanguageDao langDao = new PostgresLanguageDaoImpl();
 	
-	public boolean CreateLanguage(Language language) {
-		return langDao.CreateLanguage(language);
+	public boolean createLanguage(Language language) {
+		return langDao.createLanguage(language);
 	}
 
-	public List<Language> GetLanguages() {
-		return langDao.GetLanguages();
+	public List<Language> getLanguages() {
+		return langDao.getLanguages();
 	}
 
-	public Language GetLanguageID(Language language) {
-		return langDao.GetLanguageID(language);
+	public Language getLanguageID(Language language) {
+		return langDao.getLanguageID(language);
 	}
 }

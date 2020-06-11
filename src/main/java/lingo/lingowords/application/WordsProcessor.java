@@ -21,19 +21,19 @@ public class WordsProcessor {
 	    return list.stream().filter(o -> o.getLanguage().equals(name)).findFirst().isPresent();
 	}
 	
-	public Map<String, Set<Word>> ReadFile(File file, Language language) {
+	public Map<String, Set<Word>> readFile(File file, Language language) {
 		IWordSource wordSource = new TxtWordSource();
-		Map<String, Set<Word>> words = wordSource.ReadTxtFile(file, language);
+		Map<String, Set<Word>> words = wordSource.readTxtFile(file, language);
 
 		return words;
 	}
 
-	public boolean GetSetsFromMap(Map<String, Set<Word>> words) {
+	public boolean getSetsFromMap(Map<String, Set<Word>> words) {
 		boolean bool = false;
 		boolean result = false;
 		for (Map.Entry<String, Set<Word>> entry : words.entrySet()) {
 			System.out.println("Start " + entry.getKey());
-			bool = WriteToDatabase(entry.getKey(), entry.getValue());
+			bool = writeToDatabase(entry.getKey(), entry.getValue());
 			System.out.println("End " + entry.getKey());
 		}
 		if(bool) {
@@ -42,12 +42,12 @@ public class WordsProcessor {
 		return result;
 	}
 	
-	public boolean WriteToDatabase(String tableName, Set<Word> words) {
+	public boolean writeToDatabase(String tableName, Set<Word> words) {
 		WordTarget wordTarget = new DbWordTarget();
 		boolean bool = false;
 		boolean result = false;
 		for (Word word : words) {
-			bool = wordTarget.CreateWord(tableName, word);
+			bool = wordTarget.createWord(tableName, word);
 		}
 		if(bool) {
 			result = true;
@@ -55,16 +55,16 @@ public class WordsProcessor {
 		return result;
 	}
 	
-	public boolean CreateLanguage(Language language) {
-		return langTarget.CreateLanguage(language);
+	public boolean createLanguage(Language language) {
+		return langTarget.createLanguage(language);
 	}
 	
-	public List<Language> GetLanguages(){
-		return langTarget.GetLanguages();
+	public List<Language> getLanguages(){
+		return langTarget.getLanguages();
 	}
 
-	public Language GetLanguageID(String lang) {
+	public Language getLanguageID(String lang) {
 		Language language = new Language(lang);
-		return langTarget.GetLanguageID(language);
+		return langTarget.getLanguageID(language);
 	}
 }
